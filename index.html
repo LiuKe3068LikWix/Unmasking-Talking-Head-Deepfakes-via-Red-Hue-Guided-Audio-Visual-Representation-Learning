@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RHTHFD — Project Page</title>
-  <meta name="description" content="Toward Exposing Synthesized Talking Head Videos via Red Hue Discrepancies — Project Page" />
+  <meta name="description" content="Unmasking Talking Head Deepfakes via Red Hue-Guided Audio-Visual Representation Learning — Project Page" />
 
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,12 +40,12 @@
     <!-- HERO -->
     <section class="hero">
       <h1 class="paper-title" id="paperTitle">
-        Toward Exposing Synthesized Talking Head Videos via Red Hue Discrepancies
+        Unmasking Talking Head Deepfakes via Red Hue-Guided Audio-Visual Representation Learning
       </h1>
 
       <div class="paper-meta">
         <div class="authors" id="authors">
-          Ke Liu, Jiwei Wei, Yitong Qin, Chaoning Zhang, Guoqing Wang, Yang Yang
+          Ke Liu, Jiwei Wei, Yitong Qin, Quan Rui, Shiyuan He, Peng Wang, Yang Yang
         </div>
         <div class="affiliation" id="affiliation">
           University of Electronic Science and Technology of China
@@ -72,7 +72,7 @@
         <h2>Abstract</h2>
       </div>
       <p class="prose" id="abstractText">
-        Deepfake video detection is crucial in preventing the dissemination of harmful forged audio-visual content. However, the lack of radiance field-based videos in current audio-visual forgery datasets presents a limitation that impedes comprehensive evaluation of detection models. To address this issue, we introduce a <b>R</b>adiance <b>F</b>ield <b>A</b>udio-<b>V</b>isual (RFAV) dataset, comprising fake videos synthesized using Neural Radiance Fields (NeRF) and 3D Gaussian Splatting (3DGS), to fill this data gap. RFAV is designed for cross-paradigm evaluation, enabling a more comprehensive assessment of the generalization ability of existing audio-visual forgery detectors. Existing detectors often exhibit limited detection performance when forged videos feature highly synchronized lip movements. We rethink talking head deepfakes from a novel perspective based on the distribution of red hue in the HSV color space. We find real and forged videos exhibit distinct differences in the HSV color space, particularly in regions of intense facial motion. Based on this observation, we propose a <b>R</b>ed <b>H</b>ue-based <b>T</b>alking <b>H</b>ead <b>F</b>orgery <b>D</b>etection (RHTHFD) model. This unsupervised learning framework employs visual region attention to adaptively fuse HSV and visual features, while integrating re-weighted speech features to improve the generalization of deepfake detection. Our method achieves state-of-the-art performance on multiple evaluation benchmarks and demonstrates robustness under diverse perturbations.
+        Deepfake video detection is crucial for preventing the dissemination of harmful forged audio-visual content. Although talking head deepfakes can achieve convincing synchronization between facial motion and speech, subtle discrepancies may remain in facial appearance. We observe differences in facial detail and smoothness between real and synthesized videos in their HSV red hue representations. Motivated by this observation, we propose Red Hue-based Talking Head Forgery Detection (RHTHFD), a framework that incorporates red hue information into audio-visual representation learning. Specifically, local and global features extracted by a pretrained image encoder from a temporally averaged red hue representation are used to reweight visual representations from a pretrained lip-reading network. The resulting visual representations are adaptively fused with audio features, and the detector is trained exclusively on real videos using a temporal alignment objective. We evaluate RHTHFD on public audio-visual deepfake benchmarks and the Radiance Field Audio-Visual (RFAV) dataset, which we construct using neural radiance fields and 3D Gaussian splatting. Experimental results demonstrate that RHTHFD consistently outperforms the compared baselines across these datasets. Comparisons across different hue variants further confirm the advantage of the red hue representation.
       </p>
     </section>
 
@@ -101,7 +101,7 @@
 
           <div class="figure-caption">
             <b>Caption.</b>
-            Overview of our proposed RHTHFD. We use the visual and audio encoders of a pre-trained lip-reading network to extract vanilla visual features and temporally aligned speech features, respectively. To enable the model to effectively learn how to distinguish fake videos from the perspective of HSV color distribution, we employ DinoV2 to extract global and local semantic representations. A visual region attention mechanism is applied to fuse the semantics of the visual stream, while AWG module automatically learns feature weights based on different modalities.
+            Overview of RHTHFD. The audio and visual encoders of a pretrained lip-reading network extract speech and visual features, respectively. The red hue extractor produces frame-level red hue features, which are temporally averaged before DinoV2 extracts local and global features. The V-L and V-G projectors map the visual feature to local and global branches, which are reweighted by the corresponding red hue features. The first AWG learns the relative weights of these branches, and their weighted outputs are concatenated and passed through the VLG projector. The second AWG learns the relative weights of the resulting visual feature and the speech feature before their weighted fusion is passed to the MLP predictor to produce misalignment scores. Snowflakes denote frozen encoders.
           </div>
         </div>
 
@@ -120,7 +120,7 @@
 
           <div class="figure-caption">
             <b>Caption.</b>
-            Utilizing NeRF and 3DGS methods that demonstrate superior performance in visual quality, motion accuracy, lip synchronization, and head dynamics, RFAV comprises high-fidelity radiance field-based talking heads.
+            Overview of the RFAV dataset construction. Representative NeRF and 3DGS methods are selected based on visual quality, motion accuracy, lip synchronization, and head dynamics to generate high-fidelity talking head videos from portraits of multiple sources, including commonly used radiance field portraits and real-world data.
           </div>
         </div>
       </div>
@@ -155,8 +155,8 @@
       <button class="icon-btn" id="bibtexClose" aria-label="Close">✕</button>
     </div>
     <pre class="code" id="bibtexText">@article{liu2026rhthfd,
-  title   = {Toward Exposing Synthesized Talking Head Videos via Red Hue Discrepancies},
-  author  = {Ke Liu and Jiwei Wei and Yitong Qin and Chaoning Zhang and Guoqing Wang and Yang Yang},
+  title   = {Unmasking Talking Head Deepfakes via Red Hue-Guided Audio-Visual Representation Learning},
+  author  = {Ke Liu and Jiwei Wei and Yitong Qin and Quan Rui and Shiyuan He and Peng Wang and Yang Yang},
   year    = {2026}
 }</pre>
     <div class="modal-actions">
